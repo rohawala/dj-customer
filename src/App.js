@@ -52,7 +52,7 @@ function App() {
         <Route path="/OTP" element={<Otp/>} />
         <Route path="/Side" element={<Side/>} />
 
-        <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/requests" element={<RequestSongs />} />
           <Route path="/approved" element={<ApprovedSongs />} />
           <Route path="/transactions" element={<TransactionHistory />} />

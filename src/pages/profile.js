@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../profile.css'; // Ensure you create the appropriate CSS file for styling
 import axios from 'axios';
-
+import Side from './side'
 const Profile = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    FullName: '',
     username: '',
     phoneNumber: '',
     password: '',
@@ -75,17 +75,20 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-container">
+    <>
+    
+    <Side />
+     <div className="profile-container">
       <h1>Hello Evano 👋</h1>
       <div className="profile-content">
         <form onSubmit={handleSubmit} className="profile-form">
           <div className="form-group">
-            <label>Email</label>
+            <label>Full Name</label>
             <input
               type="email"
               name="email"
-              placeholder="Enter your Email Address"
-              value={formData.email}
+              placeholder="Enter your Full Name"
+              value={formData.FullName}
               onChange={handleChange}
             />
           </div>
@@ -142,6 +145,8 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    </>
+   
   );
 };
 

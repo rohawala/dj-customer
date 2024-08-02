@@ -10,7 +10,6 @@ const contact = () => {
     
 <Header2/>
     <ContactUs />
-     
     <Footer />
     </>
       )

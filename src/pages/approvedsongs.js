@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import  Side from './side'
 const ApprovedSongs = () => {
   const [filter, setFilter] = useState('');
   const [songs, setSongs] = useState([]);
@@ -50,9 +50,12 @@ const ApprovedSongs = () => {
   );
 
   return (
-    <div style={{ padding: '20px' }}>
+    <>
+    
+    <Side/>
+    <div style={{ padding: '20px' , marginLeft:'270px' }}>
       <h1 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        Hello Evano 👋
+        Hello Mano 👋
         <input
           type="text"
           placeholder="Filter by DJ Name..."
@@ -105,6 +108,8 @@ const ApprovedSongs = () => {
         </table>
       </div>
     </div>
+    </>
+    
   );
 };
 

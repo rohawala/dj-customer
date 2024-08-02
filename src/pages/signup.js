@@ -2,27 +2,47 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header2 from '../components/header2';
 import Footer from '../components/footer';
+import { signup } from '../api/internal';
+
+import { setUser } from "../store/userSlice";
+import { useDispatch } from "react-redux";
+
 const ContactUs = () => {
   const [fullname, setFullname] = useState('');
   const [username, setUsername] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [image, setImage] = useState(null);
-  
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (fullname && username && phoneNumber && password) {
-      // Use React Router's navigate function to redirect
-      navigate('/OTP'); // Change '/OTP' to the path you want to redirect to
-    } else {
-      alert("Please fill in all fields.");
+    const data = {
+      username,
+      password,
+      fullname,
+      phoneNumber,
+      image,
+    };
+    console.log(data);
+    try {
+      const response = await signup(data);
+      const userWithoutOtp = response.data.userWithoutOtp;
+      if (response.status === 200) {
+        navigate('/OTP', { state: { userWithoutOtp } });
+      } else {
+        setError('Failed to Sign Up');
+      }
+    } catch (error) {
+      console.error('Error during signup:', error);
+      setError('An error occurred during signup');
     }
   };
 
